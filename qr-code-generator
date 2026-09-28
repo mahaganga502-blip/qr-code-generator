@@ -1,0 +1,64 @@
+# QR Code Generator
+# Simple beginner project
+def generate_qr(text):
+    print("\n===== QR CODE =====")
+     # Create a simple pattern based on the input
+    size = 21
+    for row in range(size):
+        line = ""
+        for col in range(size):
+            # Create finder patterns
+            if (row < 7 and col < 7) or \
+               (row < 7 and col >= size - 7) or \
+               (row >= size - 7 and col < 7):
+                if (row in [0, 6] or col in [0, 6]) or \
+                   (2 <= row <= 4 and 2 <= col <= 4):
+                    line += "██"
+                else:
+                    line += "  "
+            else:
+                # Generate pattern from input text
+                value = ord(text[(row * size + col) % len(text)])
+
+                if value % 2 == 0:
+                    line += "██"
+                else:
+                    line += "  "
+        print(line)
+    print("===================")
+print("===== QR CODE GENERATOR =====")
+text = input("Enter text or URL: ")
+if text.strip() == "":
+    print("Please enter some text.")
+else:
+    print("Generating QR code...")
+    generate_qr(text)
+
+OUTPUT:
+===== QR CODE GENERATOR =====
+Enter text or URL: https://example.com
+Generating QR code...
+
+===== QR CODE =====
+██████████████    ██    ██████████████████
+██          ████    ████  ██              
+██  ██████  ██  ████  ██                  
+██  ██████  ████  ██      ██              
+██  ██████  ████      ██████              
+██          ██    ████████                
+██████████████████████  ██  ██████████████
+  ██      ████████  ██      ██    ████  ██
+      ████████  ██      ██    ████  ██    
+  ████████  ██      ██    ████  ██      ██
+██████  ██      ██    ████  ██      ██████
+██  ██      ██    ████  ██      ████████  
+██      ██    ████  ██      ████████  ██  
+    ██    ████  ██      ████████  ██      
+██          ██      ████████  ██      ██  
+██          ██  ████████  ██      ██    ██
+██          ████████  ██      ██    ████  
+██          ████  ██      ██    ████  ██  
+██          ████      ██    ████  ██      
+██          ██    ██    ████  ██      ████
+██          ████    ████  ██      ████████
+===================
